@@ -105,7 +105,7 @@ PaymentService.prototype.createOrder = function(dbname, dbcol, dbobj) {
 self.emit('callPayments', dbobj);
 }
 
-PaymentService.prototype.cancelOrder = function(dbname, dbcol, orderno) {
+PaymentService.prototype.cancelOrder = function(dbname, dbcol, orderno, cb) {
 	console.log('cancel order');
 	var self = this;
 	//var orderno = self.dbobj.orderno;
@@ -122,7 +122,7 @@ PaymentService.prototype.cancelOrder = function(dbname, dbcol, orderno) {
 		    client.close();
 		});
 	});
-
+	cb(null,'Order cancelled '+orderno)
 }
 
 PaymentService.prototype.ListOrder = function(dbname, dbcol, cb) {
@@ -139,7 +139,7 @@ PaymentService.prototype.ListOrder = function(dbname, dbcol, cb) {
 
 			var output = '<html><header><title>Order List</title></header><body>';
 		          output += '<h1>Order List</h1>';
-		          output += '<table border="1"><tr><td><b>' + 'OrdeeeeerNo' + '</b></td><td><b>' + 'Amount' + '</b></td><td><b>'
+		          output += '<table border="1"><tr><td><b>' + 'OrderNo' + '</b></td><td><b>' + 'Amount' + '</b></td><td><b>'
 		          		+ 'User' + '</b></td><td><b>' + 'Status' + '</b></td><td><b>'
 		          		+ 'created' + '</b></td></tr>';
 
