@@ -36,8 +36,9 @@ exports.startOrder = function(req, res, next) {
 
 exports.cancelOrder = function(req, res, next) {
 	var self = this;
-	PaymentService.cancelOrder(dbname,'order',req.query.orderno);
-	res.send('Order cancelled:'+orderno);
+	PaymentService.cancelOrder(dbname,'order',req.query.orderno,function(err, output) {
+		res.send(output);
+	});
 };
 
 exports.ListOrder = function(req, res, next) {
